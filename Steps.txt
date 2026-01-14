@@ -1,0 +1,37 @@
+Steps
+
+Create a service principal using AppRegistration
+Give it Owner role
+In certifications and secret; Create a client secret and copy value
+
+Create a RG
+In that create storage account
+In that create blob
+Here tfstate file will be saved 
+
+Create a repo in Github
+Create a folder in that create main.tf and variables.tf and Jenkinsfile
+git init
+git add .
+git commit -m ""
+git remote add origin https://github.com/ak2104/https://github.com/ak2104/Fundamentals-of-Terraform-with-Jenkins-Terraform-CI-CD-and-Remote-Backend-Azure-.git
+git branch -M main
+git push -u origin main
+
+terraform init
+terraform plan -var "subscription_id=<your-subscription-id>" -var "client_id=<appId>" -var "client_secret=<password>" -var "tenant_id=<tenant>"
+terraform apply -auto-approve -var "subscription_id=<your-subscription-id>" -var "client_id=<appId>" -var "client_secret=<password>" -var "tenant_id=<tenant>"
+
+In Jenkins
+Credential #,Kind,Secret (paste the value here),"ID (enter exactly this, case-sensitive)",Scope,Description (optional)
+1,Secret text,"Your appId (client_id, e.g., de34ee75-...)",AZURE_CLIENT_ID,Global,Azure SP Client ID
+2,Secret text,Your password (client_secret),AZURE_CLIENT_SECRET,Global,Azure SP Client Secret
+3,Secret text,Your tenant (tenant_id),AZURE_TENANT_ID,Global,Azure Tenant ID
+4,Secret text,Your subscription ID (a36a1195-...),AZURE_SUBSCRIPTION_ID,Global,Azure Subscription ID
+
+In Jenkins New Item
+Select Item Type
+Pipelines
+Definition Pipeline script from SCM
+
+Build the Pipeline
